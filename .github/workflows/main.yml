@@ -8,11 +8,11 @@ jobs:
     runs-on: windows-2022  # Use the latest stable Windows runner
     steps:
 
-    - name: Download ngrok
-      run: |
-        Invoke-WebRequest -Uri https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
-        Expand-Archive ngrok.zip
-        Move-Item ngrok.exe C:\ngrok.exe
+    - name: Download and Setup ngrok
+  run: |
+    Invoke-WebRequest -Uri https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
+    Expand-Archive -Path ngrok.zip -DestinationPath ngrok
+    Move-Item -Path ngrok\ngrok.exe -Destination C:\ngrok.exexe C
 
     - name: Authenticate ngrok
       run: C:\ngrok.exe authtoken YOUR_NGROK_AUTH_TOKEN
